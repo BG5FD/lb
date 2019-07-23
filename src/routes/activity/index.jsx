@@ -24,7 +24,7 @@ class Index extends React.Component {
 					<span>返回</span>
 				</Button>
 				<Button onClick={() => this.props.history.push('/rank')} style={{ margin: 10, float: 'right' }} type="primary">
-					<Icon type="cup"/>
+					<Icon type="trophy"/>
 					<span>积分排行榜</span>
 				</Button>
 				<div style={{ color: 'red', margin: 10 }}>对车上除主持人外35个人进行按座位分组，分7组，每组5人进行游戏获取积分，最后按照小组积分进行排名，排名前三的队伍有丰厚奖品呦！！！所以谨慎选择座位！！！</div>
