@@ -1,21 +1,56 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import _ from 'lodash';
+import {
+	withRouter,
+} from 'react-router-dom';
+import {
+	Menu,
+} from 'antd';
+import {
+	MENU,
+} from 'utils/enum';
 
 class Index extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			selectedKey: '',
+		};
+	}
+
+	handleMenuItemChange = (e) => {
+		const {
+			key,
+		} = e;
+		const { uri } = _.find(MENU, { key });
+		this.setState({
+			selectedKey: key,
+		});
+		this.props.history.push(uri);
 	}
 
 	render() {
+		const {
+			selectedKey,
+		} = this.state;
 		return (
-			<div>
-				Hello World!1sd212ads
-				<Link to="/example">About</Link>
-				<button onClick={() => { this.props.history.push('/example') }}>
-					button1
-				</button>
-			</div>
+			<>
+				<Menu
+					className="lb-menu"
+					onClick={this.handleMenuItemChange}
+					selectedKeys={[selectedKey]}
+					// theme="dark"
+				>
+					{
+						MENU.map(each => (
+							<Menu.Item key={each.key} title={each.title}>
+								{each.title}
+							</Menu.Item>
+						))
+					}
+				</Menu>
+				<div style={{ color: 'red' }}>紧急联系人:18201418656(赵鹏)，13051087731(高昊祯)</div>
+			</>
 		);
 	}
 }

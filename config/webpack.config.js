@@ -29,6 +29,7 @@ const commonConfig = {
     alias: {
 			app: path.resolve(__dirname, '../src'),
 			routes: path.resolve(__dirname, '../src/routes'),
+			utils: path.resolve(__dirname, '../src/utils'),
     },
     extensions: ['.js', '.jsx', '.css', '.less'],
   },
