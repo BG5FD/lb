@@ -3,8 +3,10 @@ import React from 'react';
 import {
 	withRouter,
 } from 'react-router-dom';
+import request from 'utils/request';
+import api from 'utils/enum-api';
 import {
-	Table, Button, Icon,
+	Table, Button, Icon, message,
 } from 'antd';
 
 class Index extends React.Component {
@@ -22,7 +24,7 @@ class Index extends React.Component {
 			title: '积分',
 			dataIndex: 'score',
 		},
-	];	
+	];
 
 	constructor(props) {
 		super(props);
@@ -52,6 +54,22 @@ class Index extends React.Component {
 		};
 	}
 
+	componentDidMount = () => {
+		const params = {};
+		const {
+			getRankList,
+		} = api;
+    request(getRankList, 'get', params).then(res => {
+			if (res.success) {
+				this.setState({
+					data: res.data,
+				});
+			} else {
+				message.error('数据获取失败！');
+			}
+		});
+	}
+
 	render() {
 		const { data } = this.state;
 		return (
@@ -60,7 +78,7 @@ class Index extends React.Component {
 					<Icon type="arrow-left"/>
 					<span>返回</span>
 				</Button>
-				<Table columns={this.columns} dataSource={data} pagination={false} />
+				<Table columns={this.columns} dataSource={data} pagination={false} rowKey={record => record.id} />
 			</div>
 		);
 	}

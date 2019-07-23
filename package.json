@@ -6,6 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --port 5555 --history-api-fallback --config config/webpack.config.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --mode production --progress --config config/webpack.config.js",
+    "start-ws": "node server.js",
     "clean": "rimraf dist"
   },
   "repository": {
@@ -45,9 +46,9 @@
   "dependencies": {
     "antd": "^3.20.1",
     "express": "^4.17.1",
-    "fetch": "^1.1.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "node-fetch": "^2.6.0",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

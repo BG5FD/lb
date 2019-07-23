@@ -5,6 +5,8 @@ const productionConfig = require('./webpack.production');
 const developmentConfig = require('./webpack.development');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const LB_SERVER = 'http://127.0.0.1:9999';
+
 const commonConfig = {
   entry: [
 		'babel-polyfill',
@@ -74,7 +76,11 @@ const commonConfig = {
 	devServer: {
 		host: '0.0.0.0',
 		proxy: {
-
+      '/lb': {
+        target: `${LB_SERVER}`,
+        changeOrigin: true,
+        pathRewrite: { '^/lb': '' },
+      },
 		},
 	},
 };
